@@ -43,5 +43,5 @@ void loop() {
   } else {
     Serial.println("NaN");     // 오류 표시
   }
-  delay(100);  // 너무 자주 보내면 버퍼 터질 수 있음
+  delay(20);  // 너무 자주 보내면 버퍼 터질 수 있음
 }
