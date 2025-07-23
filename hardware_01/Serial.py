@@ -1,11 +1,11 @@
 import serial
 import time
 
-#전역변수
+# 전역 변수
 connection = None
-ent_distance = 0
+current_distance = 0
 
-def connect_senser(port='COM10'):
+def connect_sensor(port='COM10'):
     global connection
     try:
         connection = serial.Serial(port, 9600)
@@ -15,7 +15,7 @@ def connect_senser(port='COM10'):
     except:
         print("연결 실패")
         return False
-    
+
 def read_distance():
     global connection, current_distance
     if connection and connection.in_waiting > 0:
@@ -35,6 +35,6 @@ def main():
             if dist:
                 print(f"거리: {dist}cm")
             time.sleep(0.5)
-            
-    if __name__ == "__main__":
-        main()
+
+if __name__ == "__main__":
+    main()
