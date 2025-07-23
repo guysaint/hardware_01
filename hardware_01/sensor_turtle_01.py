@@ -33,29 +33,44 @@ def read_distance():
 
 def main():
     if connect_sensor():
-        for i in range(100):
+        # 스크린 생성
+        s = turtle.getscreen()
+        #거북이 변수에 지정, 거북이 초기 설정
+        t = turtle.Turtle()
+        t.color("blue")
+        t.shape("turtle")
+        t.shapesize(1.5,1.5,1.5)
+
+
+        #시작점 그리기
+        t.penup()
+        t.goto(-300,-300)
+        t.pendown()
+        t.circle(30)
+        t.penup()
+
+        #도착점 그리기
+        t.goto(300,300)
+        t.pendown()
+        for i in range(4):
+            t.fd(50)
+            t.rt(90)
+        t.penup()
+
+        #거북이 시작점으로 이동
+        t.goto(-300,-270)
+        t.pendown()
+        while True:
             dist = read_distance()
             if dist:
                 print(f"거리: {dist}cm")
-            time.sleep(0.1)
-            return dist
+            time.sleep(0.15)
+        return dist
 
 if __name__ == "__main__":
     main()
     
-# 스크린 생성
-s = turtle.getscreen()
-#거북이 변수에 지정, 거북이 초기 설정
-t = turtle.Turtle()
-t.color("blue")
-t.shape("turtle")
-t.shapesize(1.5,1.5,1.5)
 
-
-#시작점 그리기
-
-#도착점 그리기
-
-#거북이 이동
 
 #초음파 센서 거리 값에 따른 동작
+
