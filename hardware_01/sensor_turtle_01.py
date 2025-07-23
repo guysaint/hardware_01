@@ -78,9 +78,36 @@ t.pendown()
 
 #초음파 센서 거리 값에 따른 동작
 def turtle_move(dist):
-    if dist > 5 and t.distance(325,275) > 20: #거리가 5cm 이상이고 도착점에 도달하지 못했을 때
-        t.setheading(t.towards(325, 275)) #거북이 머리 방향을 도착점으로
+    if dist <= 5:
+        avoid_obstacle()  # 장애물 감지되면 회피
+    elif t.distance(325, 275) > 20:
+        t.setheading(t.towards(325, 275))
         t.fd(10)
         
+#장애물 회피 알고리즘
+def avoid_obstacle():
+    #장애물 회피 행동
+    print("장애물 감지! 회피 시작")
+    
+    #1단계: 랜덤한 회전 각도 생성(30~150도)
+    turn_angle = random.randint(30,150)
+    print(f"회전 각도:{turn_angle}도")
+    
+    #2단계
+    direction = random.choice([1,-1]) #1=좌회전, -1=우회전
+    
+    if direction == 1:
+        t.lt(turn_angle)
+        print(f"좌회전 {turn_angle}도")
+        
+    else:
+        t.rt(turn_angle)
+        print(f"우회전 {turn_angle}도")
+        
+    #3단계: 회전 후 안전 거리만큼 이동
+    move_distance = random.randint(20,50)
+    t.fd(move_distance)
+    print(f"{move_distance}픽셀 이동 완료")
+
 
 main()   
