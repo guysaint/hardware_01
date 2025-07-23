@@ -40,7 +40,8 @@ def main():
         t.color("blue")
         t.shape("turtle")
         t.shapesize(1.5,1.5,1.5)
-
+        x1 = t.xcor() # 거북이의 실시간 x좌표
+        y1 = t.ycor() # 거북이의 실시간 y좌표
 
         #시작점 그리기
         t.penup()
@@ -64,7 +65,12 @@ def main():
             dist = read_distance()
             if dist:
                 print(f"거리: {dist}cm")
-            time.sleep(0.15)
+                t.setheading(t.towards(325, 275)) #거북이 머리 방향을 도착점으로
+                if dist > 5 and t.xcor() != 325 and t.ycor() != 275: #거리가 5cm 이상이고 도착점에 도달하지 못했을 때
+                    t.fd(10)
+                    
+                    
+            time.sleep(0.1)
         return dist
 
 if __name__ == "__main__":
